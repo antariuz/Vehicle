@@ -1,33 +1,30 @@
 package best.com;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class FuelTank {
 
     private BigDecimal volume;
-    private int currentVolume;
+    private BigDecimal currentVolume;
+
+    public static BigDecimal FUEL_CAPACITY_30_L = new BigDecimal (30);
+    public static BigDecimal FUEL_CAPACITY_50_L = new BigDecimal (50);
+    public static BigDecimal FUEL_CAPACITY_70_L = new BigDecimal (70);
 
     public BigDecimal getVolume() {
         return volume;
     }
 
-    public int getCurrentVolume() {
+    public BigDecimal getCurrentVolume() {
         return currentVolume;
     }
 
     public void setVolume(BigDecimal volume) {
-        if ((volume != 30) || (volume != 50) || (volume != 70)) {
-            System.out.println("The volume of Fuel Tank should be 30, 50 or 70 litres");
-        } else this.volume = volume;
+        this.volume = volume;
     }
 
-    public void setCurrentVolume(int currentVolume) {
+    public void setCurrentVolume(BigDecimal currentVolume) {
         this.currentVolume = currentVolume;
-    }
-
-    public void setWheels(List<Wheel> wheels) {
-
     }
 
     public void refuel(int inFuel) {
@@ -45,6 +42,5 @@ public class FuelTank {
     public void checkFuelVolume(int currentFuelVolume) {
         System.out.println("The fuel tank is full of " + currentFuelVolume + " litres");
     }
-
 
 }
