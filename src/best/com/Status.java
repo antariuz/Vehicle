@@ -5,7 +5,7 @@ public class Status {
     @Override
     public String toString() {
         return
-                "Quantity of Passengers: " + passengerQuantity + "\n" +
+                "Quantity of Passengers: " + FpassengerQuantity + "\n" +
                         "Current speed: " + currentSpeed + "\n" +
                         "Level of Fuel: " + currentFuelVolume + "\n" +
                         "Volume of Fuel Tank: " + fuelVolume + "\n" +

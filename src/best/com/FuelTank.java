@@ -7,9 +7,9 @@ public class FuelTank {
     private BigDecimal volume;
     private BigDecimal currentVolume;
 
-    public static BigDecimal FUEL_CAPACITY_30_L = new BigDecimal (30);
-    public static BigDecimal FUEL_CAPACITY_50_L = new BigDecimal (50);
-    public static BigDecimal FUEL_CAPACITY_70_L = new BigDecimal (70);
+    public static BigDecimal FUEL_CAPACITY_30_L = new BigDecimal(30);
+    public static BigDecimal FUEL_CAPACITY_50_L = new BigDecimal(50);
+    public static BigDecimal FUEL_CAPACITY_70_L = new BigDecimal(70);
 
     public BigDecimal getVolume() {
         return volume;
@@ -19,7 +19,12 @@ public class FuelTank {
         return currentVolume;
     }
 
-    public void setVolume(BigDecimal volume) {
+    public void setVolume(BigDecimal volume) throws MyExceptions {
+        if ((this.volume.compareTo(FUEL_CAPACITY_30_L) <= 0) ||
+            (this.volume.compareTo(FUEL_CAPACITY_50_L) <= 0) ||
+            (this.volume.compareTo(FUEL_CAPACITY_70_L) <= 0)) {
+            throw new MyExceptions("The tank volume must be 30, 50 or 70 litres");
+        }
         this.volume = volume;
     }
 
@@ -27,20 +32,20 @@ public class FuelTank {
         this.currentVolume = currentVolume;
     }
 
-    public void refuel(int inFuel) {
+    public void refuel(BigDecimal inFuel) throws MyExceptions {
         // заправка
-        if ((currentFuelVolume + inFuel) >= fuelVolume) {
-            currentFuelVolume = fuelVolume;
-            System.out.println("The fuel tank is fully refueled");
+        if (((currentVolume.add(inFuel)).compareTo(volume)) > 0) {
+            currentVolume = volume;
+            throw new MyExceptions("The fuel tank is fully refueled");
         } else {
-            currentFuelVolume += inFuel;
-            System.out.println("The fuel tank is refueled to " + currentFuelVolume + " litres");
+            currentVolume = currentVolume.add(inFuel);
+            throw new MyExceptions("The fuel tank is refueled to " + getCurrentVolume() + " litres");
         }
 
     }
 
-    public void checkFuelVolume(int currentFuelVolume) {
-        System.out.println("The fuel tank is full of " + currentFuelVolume + " litres");
+    public void checkFuelVolume() throws MyExceptions {
+        throw new MyExceptions("The fuel tank is full of " + getCurrentVolume() + " litres");
     }
 
 }

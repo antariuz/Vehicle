@@ -15,7 +15,7 @@ public class Vehicle {
 
     public void drive(boolean checkPassenger) {
         if (checkPassenger) {
-            if (currentFuelVolume > 0) {
+            if (FuelTank.getVolume > 0) {
                 // движение
             } else System.out.println("Can't drive, you have the empty fuel tank");
         } else System.out.println("В машине нет хотя бы одного водителя старше 18 лет");

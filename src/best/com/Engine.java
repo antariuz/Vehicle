@@ -4,6 +4,6 @@ public class Engine {
 
     private String brand;
     private String model;
-    private String typeOfFuel;
+    private enum typeOfFuel {PETROL, DIESEL, GAS};
 
 }
