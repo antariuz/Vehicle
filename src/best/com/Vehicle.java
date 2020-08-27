@@ -1,5 +1,6 @@
 package best.com;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,12 +14,12 @@ public class Vehicle {
     private FuelTank fuelTank;
     private Date recentActivityDate;
 
-    public void drive(boolean checkPassenger) {
+    public void drive(boolean checkPassenger) throws MyExceptions {
         if (checkPassenger) {
-            if (FuelTank.getVolume > 0) {
+            if (FuelTank.getCurrentVolume > 0) {
                 // движение
-            } else System.out.println("Can't drive, you have the empty fuel tank");
-        } else System.out.println("В машине нет хотя бы одного водителя старше 18 лет");
+            } throw new MyExceptions("Can't drive, you have the empty fuel tank");
+        } else throw new MyExceptions("В машине нет хотя бы одного водителя старше 18 лет");
     }
 
     public void pickUpPassenger(Passenger passenger) {
@@ -48,5 +49,21 @@ public class Vehicle {
         return recentActivityDate;
     }
 
+    @Override
+    public String toString() {
+        return
+                "Quantity of Passengers: " + FpassengerQuantity + "\n" +
+                        "Current speed: " + currentSpeed + "\n" +
+                        "Level of Fuel: " + currentFuelVolume + "\n" +
+                        "Volume of Fuel Tank: " + fuelVolume + "\n" +
+                        "Last Activity Date: " + recentActivityDate + "\n"
+                ;
+    }
+
+    public void addWheels(int i){
+        for (int j = 0; j < i; j++) {
+            wheels.add(new Wheel());
+        }
+    }
 
 }

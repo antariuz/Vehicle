@@ -32,20 +32,13 @@ public class FuelTank {
         this.currentVolume = currentVolume;
     }
 
-    public void refuel(BigDecimal inFuel) throws MyExceptions {
+    public void refuel(BigDecimal inFuel) {
         // заправка
-        if (((currentVolume.add(inFuel)).compareTo(volume)) > 0) {
+        if ((((currentVolume.add(inFuel)).compareTo(volume)) > 0)) {
             currentVolume = volume;
-            throw new MyExceptions("The fuel tank is fully refueled");
         } else {
             currentVolume = currentVolume.add(inFuel);
-            throw new MyExceptions("The fuel tank is refueled to " + getCurrentVolume() + " litres");
         }
-
-    }
-
-    public void checkFuelVolume() throws MyExceptions {
-        throw new MyExceptions("The fuel tank is full of " + getCurrentVolume() + " litres");
     }
 
 }
