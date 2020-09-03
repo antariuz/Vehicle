@@ -6,12 +6,12 @@ public class Door {
 
 
 
-    public void closeWindow(enum side) {
-
-    }
-
-    public void openWindow(enum side) {
-
-    }
+//    public void closeWindow(enum side) {
+//
+//    }
+//
+//    public void openWindow(enum side) {
+//
+//    }
 
 }

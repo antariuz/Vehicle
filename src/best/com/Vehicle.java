@@ -15,11 +15,11 @@ public class Vehicle {
     private Date recentActivityDate;
 
     public void drive(boolean checkPassenger) throws MyExceptions {
-        if (checkPassenger) {
-            if (FuelTank.getCurrentVolume > 0) {
-                // движение
-            } throw new MyExceptions("Can't drive, you have the empty fuel tank");
-        } else throw new MyExceptions("В машине нет хотя бы одного водителя старше 18 лет");
+//        if (checkPassenger) {
+//            if (FuelTank.getCurrentVolume > 0) {
+//                // движение
+//            } throw new MyExceptions("Can't drive, you have the empty fuel tank");
+//        } else throw new MyExceptions("В машине нет хотя бы одного водителя старше 18 лет");
     }
 
     public void pickUpPassenger(Passenger passenger) {
@@ -49,21 +49,19 @@ public class Vehicle {
         return recentActivityDate;
     }
 
-    @Override
-    public String toString() {
-        return
-                "Quantity of Passengers: " + FpassengerQuantity + "\n" +
-                        "Current speed: " + currentSpeed + "\n" +
-                        "Level of Fuel: " + currentFuelVolume + "\n" +
-                        "Volume of Fuel Tank: " + fuelVolume + "\n" +
-                        "Last Activity Date: " + recentActivityDate + "\n"
-                ;
-    }
+//    @Override
+//    public String toString() {
+//        return
+//                "Quantity of Passengers: " + passengerQuantity + "\n" +
+//                        "Current speed: " + currentSpeed + "\n" +
+//                        "Level of Fuel: " + currentFuelVolume + "\n" +
+//                        "Volume of Fuel Tank: " + fuelVolume + "\n" +
+//                        "Last Activity Date: " + recentActivityDate + "\n"
+//                ;
+//    }
 
-    public void addWheels(int i){
-        for (int j = 0; j < i; j++) {
-            wheels.add(new Wheel());
-        }
+    public void addWheels(){
+            wheels.add(new Wheel("Winter",135));
     }
 
 }
