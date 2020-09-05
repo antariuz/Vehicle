@@ -4,27 +4,10 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) throws CloneNotSupportedException {
-
-        Vehicle currentCar = new Vehicle();
-
-        ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-        Passenger mJ = new Passenger.Builder()
-                .age(35)
-                .name("Michael")
-                .surname("Jackson")
-                .build();
-        passengers.add(mJ);
-        Passenger eM = new Passenger.Builder()
-                .age(35)
-                .name("Elon")
-                .surname("Musk")
-                .build();
-        passengers.add(eM);
-
+    public static void showListOfPassengers(ArrayList<Passenger> passengers) {
         for (int i = 0; i < passengers.size(); i++) {
             if (i == 0) {
-                System.out.println("Driver: " + passengers.get(i).getName() +
+                System.out.println("\n" + "Driver: " + passengers.get(i).getName() +
                         " " + passengers.get(i).getSurname());
             } else if (i == 1) {
                 System.out.println(i + "st passenger: " + passengers.get(i).getName() +
@@ -40,8 +23,33 @@ public class Main {
                         " " + passengers.get(i).getSurname());
             }
         }
-
-//        currentCar.addWheel(wheel);
-
     }
+
+    public static ArrayList<Passenger> createPassengerTest() {
+        ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+        Passenger mJ = new Passenger.Builder()
+                .age(35)
+                .name("Michael")
+                .surname("Jackson")
+                .build();
+        passengers.add(mJ);
+        Passenger eM = new Passenger.Builder()
+                .age(35)
+                .name("Elon")
+                .surname("Musk")
+                .build();
+        passengers.add(eM);
+        return passengers;
+    }
+
+    public static void main(String[] args) throws /*CloneNotSupportedException,*/ MyExceptions {
+
+        Vehicle currentCar = new Vehicle();
+        showListOfPassengers(createPassengerTest());
+        currentCar.addWheels(Wheel.Type.WINTER, 135);
+        currentCar.addDoors();
+        currentCar.addEngine("TOYOTA", "CAMRY V30", Engine.TypeOfFuel.PETROL);
+        currentCar.addFuelTank(30, 0);
+    }
+
 }

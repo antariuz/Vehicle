@@ -6,7 +6,7 @@ public class Passenger {
     private String name;
     private String surname;
 
-    private enum sex {Male, Female}
+//    public enum Sex {MALE, FEMALE}
 
     public static class Builder {
 
@@ -31,8 +31,8 @@ public class Passenger {
             return this;
         }
 
-//        public Builder sex(Enum sex) {
-//            newPassenger. = sex;
+//        public Builder E(Enum sex) {
+//            newPassenger.se = sex;
 //            return this;
 //        }
 
