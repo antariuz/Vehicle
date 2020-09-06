@@ -1,10 +1,10 @@
 package best.com;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
-    public static void showListOfPassengers(ArrayList<Passenger> passengers) {
+    public static void showListOfPassengers(List<Passenger> passengers) {
         for (int i = 0; i < passengers.size(); i++) {
             if (i == 0) {
                 System.out.println("\n" + "Driver: " + passengers.get(i).getName() +
@@ -25,31 +25,17 @@ public class Main {
         }
     }
 
-    public static ArrayList<Passenger> createPassengerTest() {
-        ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-        Passenger mJ = new Passenger.Builder()
-                .age(35)
-                .name("Michael")
-                .surname("Jackson")
-                .build();
-        passengers.add(mJ);
-        Passenger eM = new Passenger.Builder()
-                .age(35)
-                .name("Elon")
-                .surname("Musk")
-                .build();
-        passengers.add(eM);
-        return passengers;
-    }
-
     public static void main(String[] args) throws /*CloneNotSupportedException,*/ MyExceptions {
 
         Vehicle currentCar = new Vehicle();
-        showListOfPassengers(createPassengerTest());
         currentCar.addWheels(Wheel.Type.WINTER, 135);
         currentCar.addDoors();
-        currentCar.addEngine("TOYOTA", "CAMRY V30", Engine.TypeOfFuel.PETROL);
-        currentCar.addFuelTank(30, 0);
+        currentCar.addEngine("Ford", "Mustang", Engine.TypeOfFuel.PETROL);
+        currentCar.addFuelTank(30, 30);
+        currentCar.addPassenger(20, "John", "Wick");
+        showListOfPassengers(currentCar.getPassengers());
+        currentCar.drive(1);
+
     }
 
 }

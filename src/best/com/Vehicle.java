@@ -78,17 +78,58 @@ public class Vehicle {
         } else throw new MyExceptions("This car has already fuel tank");
     }
 
-    public boolean checkDriver() {
-        return true;
+    public void addPassenger(Integer age, String name, String surname) throws MyExceptions {
+        int MAX_COUNT_OF_PASSENGERS = 5;
+        if (passengers == null) {
+            passengers = new ArrayList<Passenger>();
+            Passenger passenger = new Passenger.Builder()
+                    .age(age).name(name).surname(surname).build();
+            passengers.add(passenger);
+        } else {
+            if (!(passengers.size() == MAX_COUNT_OF_PASSENGERS)) {
+                Passenger passenger = new Passenger.Builder()
+                        .age(age).name(name).surname(surname).build();
+                passengers.add(passenger);
+            } else throw new MyExceptions("This car is full of passengers");
+        }
     }
 
-//    public void drive() {
-//        if (checkDriver()) {
-//            if (FuelTank.getCurrentVolume > 0) {
-//                // движение
-//            } throw new MyExceptions("Can't drive, you have the empty fuel tank");
-//        } else throw new MyExceptions("В машине нет хотя бы одного водителя старше 18 лет");
-//    }
+    public boolean hasDriver() {
+        return !(passengers == null);
+    }
+
+    public boolean hasFuel() {
+        return fuelTank.getFuelVolume().compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    public BigDecimal fuelAndDistanceRate() {
+        int FUEL_RATE = 10;
+        int DISTANCE_RATE = 100;
+        BigDecimal fuelRate = new BigDecimal(FUEL_RATE);
+        BigDecimal distanceRate = new BigDecimal(DISTANCE_RATE);
+        return new BigDecimal(String.valueOf(fuelRate.divide(distanceRate)));
+    }
+
+    public boolean hasEnoughFuel(int distance, BigDecimal fuelAndDistanceRate) {
+        return fuelTank.getFuelVolume().compareTo(fuelAndDistanceRate.multiply(new BigDecimal(distance))) >= 0;
+    }
+
+    public void startMove(int distance) {
+        fuelTank.setFuelVolume(fuelTank.getFuelVolume().subtract
+                ((fuelAndDistanceRate()).multiply(new BigDecimal(distance))));
+    }
+
+    public void drive(int distance) throws MyExceptions {
+        if (hasDriver()) {
+            if (hasFuel()) {
+                if (hasEnoughFuel(distance, fuelAndDistanceRate())) {
+                    startMove(distance);
+                    System.out.println("The car has moved " + distance + " km and " + fuelTank.getFuelVolume()
+                            + " litres of fuel has left");
+                } else throw new MyExceptions("Can't drive such distance due to not enough of fuel volume");
+            } else throw new MyExceptions("Can't drive, you have the empty fuel tank");
+        } else throw new MyExceptions("There is no a driver in the car");
+    }
 
 //    public void refuel(BigDecimal inFuel) {
 //        // заправка
@@ -152,4 +193,7 @@ public class Vehicle {
         return fuelTank;
     }
 
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
 }

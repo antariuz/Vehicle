@@ -16,7 +16,7 @@ public class Passenger {
             newPassenger = new Passenger();
         }
 
-        public Builder age(int age) {
+        public Builder age(Integer age) {
             newPassenger.age = age;
             return this;
         }
