@@ -2,9 +2,8 @@ package best.com;
 
 public class Wheel /*implements Cloneable*/ {
 
-    private final int diameter;
-
-    public enum Type {SUMMER, WINTER, ALLSEASON}
+    private int diameter;
+    private Type type;
 
 //    @Override
 //    public Object clone() throws CloneNotSupportedException {
@@ -18,5 +17,19 @@ public class Wheel /*implements Cloneable*/ {
     public int getDiameter() {
         return diameter;
     }
+
+    public void setDiameter(int diameter) {
+        this.diameter = diameter;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public enum Type {SUMMER, WINTER, ALLSEASON}
 
 }

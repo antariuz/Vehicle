@@ -32,7 +32,7 @@ public class Main {
         currentCar.addDoors();
         currentCar.addEngine("Ford", "Mustang", Engine.TypeOfFuel.PETROL);
         currentCar.addFuelTank(30, 30);
-        currentCar.addPassenger(20, "John", "Wick");
+        currentCar.addPassenger(20, "John", "Wick", Passenger.Sex.MALE);
         showListOfPassengers(currentCar.getPassengers());
         currentCar.drive(1);
 

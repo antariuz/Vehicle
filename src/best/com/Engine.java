@@ -5,8 +5,6 @@ public class Engine {
     private String brand;
     private String model;
 
-    public enum TypeOfFuel {PETROL, DIESEL, GAS}
-
     public Engine(String brand, String model, TypeOfFuel type) {
         this.brand = brand;
         this.model = model;
@@ -27,5 +25,7 @@ public class Engine {
     public void setModel(String model) {
         this.model = model;
     }
+
+    public enum TypeOfFuel {PETROL, DIESEL, GAS}
 
 }

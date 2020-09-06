@@ -78,17 +78,17 @@ public class Vehicle {
         } else throw new MyExceptions("This car has already fuel tank");
     }
 
-    public void addPassenger(Integer age, String name, String surname) throws MyExceptions {
+    public void addPassenger(Integer age, String name, String surname, Passenger.Sex sex) throws MyExceptions {
         int MAX_COUNT_OF_PASSENGERS = 5;
         if (passengers == null) {
             passengers = new ArrayList<>();
             Passenger passenger = new Passenger.Builder()
-                    .age(age).name(name).surname(surname).build();
+                    .age(age).name(name).surname(surname).sex(sex).build();
             passengers.add(passenger);
         } else {
             if (!(passengers.size() == MAX_COUNT_OF_PASSENGERS)) {
                 Passenger passenger = new Passenger.Builder()
-                        .age(age).name(name).surname(surname).build();
+                        .age(age).name(name).surname(surname).sex(sex).build();
                 passengers.add(passenger);
             } else throw new MyExceptions("This car is full of passengers");
         }
