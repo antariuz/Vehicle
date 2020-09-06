@@ -18,7 +18,7 @@ public class Vehicle {
     public void addWheels(Wheel.Type type, int diameter) throws MyExceptions {
         int SET_OF_WHEELS = 5;
         if (wheels == null) {
-            wheels = new ArrayList<Wheel>();
+            wheels = new ArrayList<>();
             for (int i = 0; i < SET_OF_WHEELS; i++) {
                 wheels.add(new Wheel(type, diameter));
             }
@@ -28,7 +28,7 @@ public class Vehicle {
     public void addDoors() throws MyExceptions {
         int SET_OF_DOORS = 4;
         if (doors == null) {
-            doors = new ArrayList<Door>();
+            doors = new ArrayList<>();
             for (int i = 0; i < SET_OF_DOORS; i++) {
                 switch (i) {
                     case 0:
@@ -81,7 +81,7 @@ public class Vehicle {
     public void addPassenger(Integer age, String name, String surname) throws MyExceptions {
         int MAX_COUNT_OF_PASSENGERS = 5;
         if (passengers == null) {
-            passengers = new ArrayList<Passenger>();
+            passengers = new ArrayList<>();
             Passenger passenger = new Passenger.Builder()
                     .age(age).name(name).surname(surname).build();
             passengers.add(passenger);
@@ -114,7 +114,7 @@ public class Vehicle {
         return fuelTank.getFuelVolume().compareTo(fuelAndDistanceRate.multiply(new BigDecimal(distance))) >= 0;
     }
 
-    public void startMove(int distance) {
+    private void startMove(int distance) {
         fuelTank.setFuelVolume(fuelTank.getFuelVolume().subtract
                 ((fuelAndDistanceRate()).multiply(new BigDecimal(distance))));
     }
