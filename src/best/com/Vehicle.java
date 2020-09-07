@@ -15,6 +15,7 @@ public class Vehicle {
     private Engine engine;
     private FuelTank fuelTank;
     private Date recentActivityDate;
+    private List<Model> model;
 
     public void addWheels(Wheel.Type type, int diameter) throws MyExceptions {
         int SET_OF_WHEELS = 5;
@@ -196,6 +197,21 @@ public class Vehicle {
 
     public List<Passenger> getPassengers() {
         return passengers;
+    }
+
+    @Override
+    public boolean equals(Vehicle v) {
+        if (this == v) return true;
+        if (v == null || getClass() != v.getClass()) return false;
+        return hashCode() == ((Vehicle) v).hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = model.hashCode();
+        result = 31 * result + passengers.size();
+        result = 31 * result + doors.size();
+        return result;
     }
 
 }
