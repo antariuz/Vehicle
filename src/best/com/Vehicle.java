@@ -77,6 +77,13 @@ public class Vehicle {
         } else throw new MyExceptions("This car has already fuel tank");
     }
 
+    private boolean isSamePassenger(Passenger passenger) {
+        for (Passenger value : passengers) {
+            return passenger.equals(value);
+        }
+        return false;
+    }
+
     public void addPassenger(Integer age, String name, String surname, Passenger.Sex sex) throws MyExceptions {
         int MAX_COUNT_OF_PASSENGERS = 5;
         if (passengers == null) {
@@ -88,7 +95,9 @@ public class Vehicle {
             if (!(passengers.size() == MAX_COUNT_OF_PASSENGERS)) {
                 Passenger passenger = new Passenger.Builder()
                         .age(age).name(name).surname(surname).sex(sex).build();
-                passengers.add(passenger);
+                if (!isSamePassenger(passenger)) {
+                    passengers.add(passenger);
+                } else throw new MyExceptions("Same passenger can't be added twice");
             } else throw new MyExceptions("This car is full of passengers");
         }
     }
@@ -148,21 +157,6 @@ public class Vehicle {
 
     public List<Passenger> getPassengers() {
         return passengers;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        return hashCode() == ((Vehicle) o).hashCode();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = model.hashCode();
-        result = 31 * result + passengers.size();
-        result = 31 * result + doors.size();
-        return result;
     }
 
 }

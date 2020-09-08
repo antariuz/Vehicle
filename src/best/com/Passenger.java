@@ -75,4 +75,16 @@ public class Passenger {
 
     public enum Sex {MALE, FEMALE}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return hashCode() == ((Passenger) o).hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return age.hashCode();
+    }
+
 }
