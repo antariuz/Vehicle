@@ -2,19 +2,16 @@ package best.com;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 public class Vehicle {
 
     private List<Passenger> passengers;
-    private int currentSpeed;
     private List<Wheel> wheels;
     private List<Door> doors;
     private Engine engine;
     private FuelTank fuelTank;
-    private Date recentActivityDate;
     private List<Model> model;
 
     public void addWheels(Wheel.Type type, int diameter) throws MyExceptions {
@@ -133,52 +130,6 @@ public class Vehicle {
         } else throw new MyExceptions("There is no a driver in the car");
     }
 
-//    public void refuel(BigDecimal inFuel) {
-//        // заправка
-//        if ((((currentVolume.add(inFuel)).compareTo(volume)) > 0)) {
-//            currentVolume = volume;
-//        } else {
-//            currentVolume = currentVolume.add(inFuel);
-//        }
-//    }
-
-    public void pickUpPassenger(Passenger passenger) {
-        // pick up
-    }
-
-    public void dropPassenger(Passenger passenger) {
-        // drop passenger
-    }
-
-    public void speedUp(int currentSpeed) {
-        //
-    }
-
-    public void speedDown(int currentSpeed) {
-        //
-    }
-
-    public void checkSpeed(int currentSpeed) {
-        //
-    }
-
-    public Date recentActivityDate() {
-        //
-        return recentActivityDate;
-    }
-
-//    @Override
-//    public String toString() {
-//        return
-//                "Quantity of Passengers: " + passengerQuantity + "\n" +
-//                        "Current speed: " + currentSpeed + "\n" +
-//                        "Level of Fuel: " + currentFuelVolume + "\n" +
-//                        "Volume of Fuel Tank: " + fuelVolume + "\n" +
-//                        "Last Activity Date: " + recentActivityDate + "\n"
-//                ;
-//    }
-
-
     public List<Wheel> getWheels() {
         return wheels;
     }
@@ -200,10 +151,10 @@ public class Vehicle {
     }
 
     @Override
-    public boolean equals(Vehicle v) {
-        if (this == v) return true;
-        if (v == null || getClass() != v.getClass()) return false;
-        return hashCode() == ((Vehicle) v).hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return hashCode() == ((Vehicle) o).hashCode();
     }
 
     @Override

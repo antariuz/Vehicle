@@ -12,12 +12,16 @@ public class MyComparator implements Comparator<Vehicle> {
             olderPassengerInVehicleO1 = olderPassengerInVehicleO1.getAge() > o1.getPassengers().get(i + 1).getAge()
                     ? olderPassengerInVehicleO1 : o1.getPassengers().get(i + 1);
         }
+
         Passenger olderPassengerInVehicleO2 = o2.getPassengers().get(0);
         for (int i = 0; i < o2.getPassengers().size() - 1; i++) {
             olderPassengerInVehicleO2 = olderPassengerInVehicleO2.getAge() > o2.getPassengers().get(i + 1).getAge()
                     ? olderPassengerInVehicleO2 : o2.getPassengers().get(i + 1);
         }
-        return olderPassengerInVehicleO1.getAge().compareTo(olderPassengerInVehicleO2.getAge());
+
+        int oldestPassengerInVehicles =
+                olderPassengerInVehicleO2.getAge().compareTo(olderPassengerInVehicleO1.getAge());
+        return oldestPassengerInVehicles;
 
     }
 
