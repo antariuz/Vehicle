@@ -54,7 +54,7 @@ public class Main {
         car1.addEngine("Ford", "Mustang", Engine.TypeOfFuel.PETROL);
         car1.addFuelTank(30, 30);
         car1.addPassenger(9, "John", "Wick", Passenger.Sex.MALE);
-        car1.addPassenger(9, "John", "Wick", Passenger.Sex.MALE);
+//        car1.addPassenger(9, "John", "Wick", Passenger.Sex.MALE);
         car1.addPassenger(190, "Sponge", "Bob", Passenger.Sex.MALE);
 //        showListOfPassengers(car1.getPassengers());
 //        car.drive(1);

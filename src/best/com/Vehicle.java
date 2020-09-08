@@ -2,12 +2,12 @@ package best.com;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class Vehicle {
 
-    private List<Passenger> passengers;
+    private HashSet<Passenger> passengers;
     private List<Wheel> wheels;
     private List<Door> doors;
     private Engine engine;
@@ -87,7 +87,7 @@ public class Vehicle {
     public void addPassenger(Integer age, String name, String surname, Passenger.Sex sex) throws MyExceptions {
         int MAX_COUNT_OF_PASSENGERS = 5;
         if (passengers == null) {
-            passengers = new ArrayList<>();
+            passengers = new HashSet<>();
             Passenger passenger = new Passenger.Builder()
                     .age(age).name(name).surname(surname).sex(sex).build();
             passengers.add(passenger);
@@ -155,7 +155,7 @@ public class Vehicle {
         return fuelTank;
     }
 
-    public List<Passenger> getPassengers() {
+    public HashSet<Passenger> getPassengers() {
         return passengers;
     }
 
