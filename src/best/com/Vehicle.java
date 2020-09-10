@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Vehicle {
 
-    private HashSet<Passenger> passengers;
+    private Set<Passenger> passengers;
     private List<Wheel> wheels;
     private List<Door> doors;
     private Engine engine;
@@ -155,7 +156,7 @@ public class Vehicle {
         return fuelTank;
     }
 
-    public HashSet<Passenger> getPassengers() {
+    public Set<Passenger> getPassengers() {
         return passengers;
     }
 
