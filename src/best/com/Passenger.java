@@ -5,8 +5,7 @@ public class Passenger {
     private Integer age;
     private String name;
     private String surname;
-
-//    public enum Sex {MALE, FEMALE}
+    private Sex sex;
 
     public static class Builder {
 
@@ -31,10 +30,10 @@ public class Passenger {
             return this;
         }
 
-//        public Builder E(Enum sex) {
-//            newPassenger.se = sex;
-//            return this;
-//        }
+        public Builder sex(Sex sex) {
+            newPassenger.sex = sex;
+            return this;
+        }
 
         public Passenger build() {
             return newPassenger;
@@ -64,6 +63,28 @@ public class Passenger {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public enum Sex {MALE, FEMALE}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return hashCode() == ((Passenger) o).hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return age.hashCode();
     }
 
 }

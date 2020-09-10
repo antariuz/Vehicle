@@ -2,23 +2,22 @@ package best.com;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class Vehicle {
 
-    private List<Passenger> passengers;
-    private int currentSpeed;
+    private HashSet<Passenger> passengers;
     private List<Wheel> wheels;
     private List<Door> doors;
     private Engine engine;
     private FuelTank fuelTank;
-    private Date recentActivityDate;
+    private List<Model> model;
 
     public void addWheels(Wheel.Type type, int diameter) throws MyExceptions {
         int SET_OF_WHEELS = 5;
         if (wheels == null) {
-            wheels = new ArrayList<Wheel>();
+            wheels = new ArrayList<>();
             for (int i = 0; i < SET_OF_WHEELS; i++) {
                 wheels.add(new Wheel(type, diameter));
             }
@@ -28,7 +27,7 @@ public class Vehicle {
     public void addDoors() throws MyExceptions {
         int SET_OF_DOORS = 4;
         if (doors == null) {
-            doors = new ArrayList<Door>();
+            doors = new ArrayList<>();
             for (int i = 0; i < SET_OF_DOORS; i++) {
                 switch (i) {
                     case 0:
@@ -78,18 +77,27 @@ public class Vehicle {
         } else throw new MyExceptions("This car has already fuel tank");
     }
 
-    public void addPassenger(Integer age, String name, String surname) throws MyExceptions {
+    private boolean isSamePassenger(Passenger passenger) {
+        for (Passenger value : passengers) {
+            return passenger.equals(value);
+        }
+        return false;
+    }
+
+    public void addPassenger(Integer age, String name, String surname, Passenger.Sex sex) throws MyExceptions {
         int MAX_COUNT_OF_PASSENGERS = 5;
         if (passengers == null) {
-            passengers = new ArrayList<Passenger>();
+            passengers = new HashSet<>();
             Passenger passenger = new Passenger.Builder()
-                    .age(age).name(name).surname(surname).build();
+                    .age(age).name(name).surname(surname).sex(sex).build();
             passengers.add(passenger);
         } else {
             if (!(passengers.size() == MAX_COUNT_OF_PASSENGERS)) {
                 Passenger passenger = new Passenger.Builder()
-                        .age(age).name(name).surname(surname).build();
-                passengers.add(passenger);
+                        .age(age).name(name).surname(surname).sex(sex).build();
+                if (!isSamePassenger(passenger)) {
+                    passengers.add(passenger);
+                } else throw new MyExceptions("Same passenger can't be added twice");
             } else throw new MyExceptions("This car is full of passengers");
         }
     }
@@ -114,7 +122,7 @@ public class Vehicle {
         return fuelTank.getFuelVolume().compareTo(fuelAndDistanceRate.multiply(new BigDecimal(distance))) >= 0;
     }
 
-    public void startMove(int distance) {
+    private void startMove(int distance) {
         fuelTank.setFuelVolume(fuelTank.getFuelVolume().subtract
                 ((fuelAndDistanceRate()).multiply(new BigDecimal(distance))));
     }
@@ -130,52 +138,6 @@ public class Vehicle {
             } else throw new MyExceptions("Can't drive, you have the empty fuel tank");
         } else throw new MyExceptions("There is no a driver in the car");
     }
-
-//    public void refuel(BigDecimal inFuel) {
-//        // заправка
-//        if ((((currentVolume.add(inFuel)).compareTo(volume)) > 0)) {
-//            currentVolume = volume;
-//        } else {
-//            currentVolume = currentVolume.add(inFuel);
-//        }
-//    }
-
-    public void pickUpPassenger(Passenger passenger) {
-        // pick up
-    }
-
-    public void dropPassenger(Passenger passenger) {
-        // drop passenger
-    }
-
-    public void speedUp(int currentSpeed) {
-        //
-    }
-
-    public void speedDown(int currentSpeed) {
-        //
-    }
-
-    public void checkSpeed(int currentSpeed) {
-        //
-    }
-
-    public Date recentActivityDate() {
-        //
-        return recentActivityDate;
-    }
-
-//    @Override
-//    public String toString() {
-//        return
-//                "Quantity of Passengers: " + passengerQuantity + "\n" +
-//                        "Current speed: " + currentSpeed + "\n" +
-//                        "Level of Fuel: " + currentFuelVolume + "\n" +
-//                        "Volume of Fuel Tank: " + fuelVolume + "\n" +
-//                        "Last Activity Date: " + recentActivityDate + "\n"
-//                ;
-//    }
-
 
     public List<Wheel> getWheels() {
         return wheels;
@@ -193,7 +155,8 @@ public class Vehicle {
         return fuelTank;
     }
 
-    public List<Passenger> getPassengers() {
+    public HashSet<Passenger> getPassengers() {
         return passengers;
     }
+
 }
